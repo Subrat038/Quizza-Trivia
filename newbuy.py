@@ -9,7 +9,7 @@ import multiprocessing
 import threading
 import concurrent
 
-BOT_OWNER_ROLE = 'The Best | | Runner' # change to what you need
+BOT_OWNER_ROLE = 'Bot Runner' # change to what you need
 #BOT_OWNER_ROLE_ID ="597332392637890571", 
 "569420128794443776", 
 "607613349491900436" 
@@ -17,19 +17,17 @@ BOT_OWNER_ROLE = 'The Best | | Runner' # change to what you need
  
 
  
-oot_channel_id_list = ["620842231229841421",  #gnew
-"657955269086674955",   #ukt
-"654337758285791255",   #ga
-"636208307740344320"    #unt
+oot_channel_id_list = ["703252832916340737",  #aln
+"703436204049432607",   #egl
 
 ]
 
 
 answer_pattern = re.compile(r'(not|n)?([1-3]{1})(\?)?(cnf)?(\?)?$', re.IGNORECASE)
 
-apgscore = 200
-nomarkscore = 100
-markscore = 50
+apgscore = 500
+nomarkscore = 200
+markscore = 100
 
 async def update_scores(content, answer_scores):
     global answer_pattern
@@ -131,9 +129,9 @@ class Bot(discord.Client):
         self.answer_scores = answer_scores
 
         # embed creation
-        self.embed=discord.Embed(title= "__**LOCO TRIVIA**__", description="**Loco Deep searching.....**", color=0x98FB98)
+        self.embed=discord.Embed(title= "☛__**TRIVIA CHALLENGE PRO**__☚", description="**Quizza Deep searching.....**", color=0x98FB98)
         self.embed.set_author(name ='',url=' ',icon_url='https://cdn.discordapp.com/attachments/592598263996088320/618292227633971230/images.png')
-        self.embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/594012615164821523/610794247313948672/videotogif_2019.08.05_22.43.53.gif")
+        self.embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/605802584074354688/703452883416383580/IMG_20200425_092021.jpg")
         
         
         self.embed.add_field(name="**__ANSWER 1__**", value="~~0.0~~", inline=False)
@@ -143,8 +141,8 @@ class Bot(discord.Client):
         self.embed.add_field(name="**__ANSWER 3__**", value="~~0.0~~", inline=False)
         
         
-        self.embed.set_footer(text=f"Made with ♥ by ⎝⧹𝗗𝗿. BOSS™╱⎠ & M̸R̸.̸G̸E̸N̸I̸U̸S̸ K̸I̸N̸G̸"                , \
-            icon_url="https://cdn.discordapp.com/attachments/626463527301021735/638041312100220948/JPEG_20191002_104501.jpg")
+        self.embed.set_footer(text=f"Made with ♥ by Challenge team"                , \
+            icon_url="https://cdn.discordapp.com/attachments/605802584074354688/701428309753331822/IMG_20200407_173052.jpg")
 
         #await self.bot.add_reaction(embed,':spy:')
 
@@ -217,7 +215,7 @@ class Bot(discord.Client):
         await self.clear_results()
         await self.update_embeds()
         #await self.change_presence(activity=discord.Game(name='with '+str(len(set(self.get_all_members())))+' users'))
-        await self.change_presence(activity=discord.Activity(type=1,name='with LOCO ANSWER!!'))
+        await self.change_presence(activity=discord.Activity(type=1,name='with QUIZZA ANSWER!!'))
 
     async def on_message(self, message):
 
@@ -225,7 +223,7 @@ class Bot(discord.Client):
         if message.author == self.user or message.guild == None:
             return
 
-        if message.content.lower() == "lo":
+        if message.content.lower() == "qz":
             await message.delete()
             if BOT_OWNER_ROLE in [role.name for role in message.author.roles]:
                 self.embed_msg = None
@@ -275,7 +273,7 @@ def bot_with_cyclic_update_process(update_event, answer_scores):
     upd_thread.start()
 
     loop = asyncio.get_event_loop()
-    loop.create_task(bot.start('NjUwOTY0ODEzMTQ4ODQ4MTMw.XeTAqw.B8IM_UJGm2Zg59-XZE0V5bYb9tU'))
+    loop.create_task(bot.start('NzAzNDUxOTcyODc1MDU5MjEw.XqO3cg.4vrA2pGXuUV_es4v-yXFinbtRHQ'))
     loop.run_forever()
 
 
@@ -284,7 +282,7 @@ def selfbot_process(update_event, answer_scores):
     selfbot = SelfBot(update_event, answer_scores)
 
     loop = asyncio.get_event_loop()
-    loop.create_task(selfbot.start('NTYwMDk0Mzk2ODg4OTA3Nzg2.XeZ9OA.KcUv3HmuO8UMZQg5i-A8FE_sjA4',
+    loop.create_task(selfbot.start('NjI4MTkxNjE1MTA5OTU1NjA3.XqGd1w.HX9jfEl_1q-SPErGjAfvqKW0g2I',
                                    bot=False))
     loop.run_forever()
 
